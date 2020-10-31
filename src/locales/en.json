@@ -1,0 +1,18 @@
+{
+  "app-name": "ToppingEngine",
+  "introduction" : "Introduction",
+  "why-lua" : "Why Lua?",
+  "why-kotlin" : "Why Kotlin?",
+  "faq" : "FAQ",
+  "quick-start" : "Quick Start",
+  "releases" : "Releases",
+  "contribution" : "Contribution",
+  "plugins" : "Plugins",
+  "components" : "Components", 
+  "methods" : "Methods",
+  "variables" : "Variables",
+  "parameters" : "Parameters",
+  "installation" : "Installation",
+  "how-to-use" : "How To Use",
+  "resource-system" : "Resource System"
+}

@@ -1,0 +1,32 @@
+<template>
+  <v-container fluid>
+    <v-row align="center" justify="center">
+      <v-spacer></v-spacer>
+        <v-col>
+            <v-img src="./../../public/icon.png" height="200" contain></v-img>
+            <p style="text-align:center;" class="text-h4">Welcome to {{$t('app-name')}}</p>
+            <p style="text-align:center;" class="text-h6">One layout one code.</p>
+            <p style="text-align:center;" >ToppingEngine is a library helps you create mobile applications using one type of layout code and one type of backend code.</p>
+            <p style="text-align:center;" >All you need to know is how Android layout XML works. Basic Lua or Kotlin knowledge is required for using ToppingEngine.</p>
+            <p style="text-align:center;" >Extending this engine makes you create web and desktop applications.</p>
+        </v-col>
+        <v-spacer></v-spacer>
+    </v-row>
+    <v-row>
+      <v-spacer></v-spacer>
+      <v-col align-self="center" cols="auto">
+        <v-btn to="installation" style="margin-right:10px"><v-icon color="primary">mdi-moped-outline</v-icon>{{$t('quick-start')}}</v-btn>
+        <v-btn to="whylua" style="margin-right:10px"><v-icon color="primary">mdi-book-open-variant</v-icon>{{$t('introduction')}}</v-btn>
+        <v-btn href="https://github.com/topping-dev"><v-icon color="primary">mdi-github</v-icon> GitHub</v-btn>
+      </v-col>
+      <v-spacer></v-spacer>
+    </v-row>
+    <!--div class="text-h4">Supporting {{$t('app-name')}}</div-->    
+  </v-container>
+</template>
+
+<script>
+  export default {
+    name: 'Home'
+  }
+</script>
