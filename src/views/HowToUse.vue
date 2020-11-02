@@ -116,12 +116,12 @@ LuaForm.RegisterFormEvent("ListViewTest", LuaForm.FORM_EVENT_CREATE, ListViewTes
     <p>First parameter is the <code>lua:id</code> that we defined on our xml.</p>
     <p>Second <code><router-link to="/doc/LuaForm#FORM_EVENT_CREATE">LuaForm.FORM_EVENT_CREATE</router-link></code> parameter is the which event will it fire.</p>
     <p>Third parameter is the which <code>method</code> will it fire (you can directly <code>inline method</code> here).</p>
-    <p>When application launches, while it is creating <code>testbed.xml</code>,  it checkes if there was an <code>FORM_EVENT_CREATE</code> is set. If it is set, it calls the third parameter
+    <p>When application launches, while it is creating <code>testbed.xml</code>,  it checkes if there is an <code>FORM_EVENT_CREATE</code> is set. If it is set, it calls the third parameter
      function.</p>
     <p>On <code>ListViewTest_Constructor</code> first parameter is <code>RecyclerView</code>. Second parameter is <code>LuaContext</code>,  which has similar purpose to Android's Context.</p>
     <p>You can find more info about methods and variables at <router-link to="/doc/LuaForm">LuaForm</router-link> documentation.</p>
     <p></p>
-    <p>Now we need to set on is the entry point of the LuaEngine on the native application.</p>
+    <p>Now we need to set on is the entry point of the ToppingEngine on the native application.</p>
 
     <OSLangSelector v-model="langos">
         <template v-slot:Lua-Android>
@@ -131,11 +131,11 @@ public class MainActivity extends LuaForm implements LuaInterface
 			</span></pre><br/>
             <p>Add this code to <code>onCreate</code> method.</p>
 			<pre v-highlightjs><span class="java">
-//Creates context to use in LuaEngine
+//Creates context to use in ToppingEngine
 luaContext = LuaContext.CreateLuaContext(this);
 
-final LuaEngine luaEngine = LuaEngine.getInstance();
-//Creates multithreaded class loader for LuaEngine
+final ToppingEngine toppingEngine = ToppingEngine.getInstance();
+//Creates multithreaded class loader for ToppingEngine
 final HandlerThread ht = new HandlerThread("Lua Loader Thread", Process.THREAD_PRIORITY_URGENT_DISPLAY);
 ht.start();
 
@@ -145,9 +145,9 @@ LuaLoadHandler handler = new LuaLoadHandler(this, ht.getLooper())
 	public void OnFinished()
 	{
 		//Sets the main form lua id
-		luaId = luaEngine.GetMainForm();
+		luaId = toppingEngine.GetMainForm();
 		//Gets the main ui xml
-		String initUI = luaEngine.GetMainUI();
+		String initUI = toppingEngine.GetMainUI();
 		if(initUI.compareTo("") != 0)
 		{
 			//If main ui xml exists loads it

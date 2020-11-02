@@ -3,7 +3,7 @@
         <div class="text-h3">{{$t('resource-system')}}</div>
         <div style="font-size:medium; margin-bottom:40px; border-top:1px solid black;" class="nocontent">
         </div>
-        <p>Resources are provided via <code>LR</code> class in lua files. LuaEngine automatically generates resource documentation on first build.</p>
+        <p>Resources are provided via <code>LR</code> class in lua files. ToppingEngine automatically generates resource documentation on first build.</p>
         <p>After that you can set values from resource directly using <code>LR</code> class.</p>
         <p><code>LR</code> resources are converted to <code>LuaRef</code> at background.</p>
 

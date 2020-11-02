@@ -5,7 +5,7 @@
             <template v-slot:Lua-Android>
                 <div class="text-h4">Setting up environment</div><br/>
                 <p>For now developing applications with lua middleware is recommended on Android Studio. To ready your development environment you need to install <a href="https://github.com/EmmyLua/IntelliJ-EmmyLua">EmmyLua</a> plugin.</p>
-                <p>If you want you can download sample project here.</p>
+                <p>If you want you can download sample project <a href="https://www.github.com/topping-dev/topping-dev-android-sample">here</a>.</p>
                 <p>After Android Studio is ready, download <code>parser.jar</code>, <code>doclua.zip</code> and <code>luaprocessor.gradle</code> under project directory.</p>
                 <p>Add <code>apply from: 'luaprocessor.gradle'</code> under <code>apply plugin: 'com.android.application'</code></p>
                 <pre v-highlightjs><span class="gradle">
@@ -16,14 +16,14 @@ android {
                 </span></pre>
                 <br/>
                 <div class="text-h4">Directory Structure</div><br/>
-                <p>On <code>Android</code> LuaEngine uses Android's own resource system to load ui components. For example you will use layout folder to add your layout xml's.
+                <p>On <code>Android</code> ToppingEngine uses Android's own resource system to load ui components. For example you will use layout folder to add your layout xml's.
                 For lua code you will use <code>assets</code> folder.</p>
             </template>
             <template v-slot:Lua-iOS>
                 <div class="text-h4">Setting up environment</div><br/>
                 <p>For now developing applications with lua middleware is recommended on Android Studio. You can check <code>Android</code> part.</p>
                 <div class="text-h4">Directory Structure</div><br/>
-                <p>On <code>iOS</code> LuaEngine uses <code>Resources</code> folder to load layout and lua code.</p>
+                <p>On <code>iOS</code> ToppingEngine uses <code>Resources</code> folder to load layout and lua code.</p>
                 <p>It supports most of the resource extensions that exist on Android resource system. For example, you can use <code>value-port</code> and <code>value-land</code>.
                 It also supports base styles.</p>                
             </template>

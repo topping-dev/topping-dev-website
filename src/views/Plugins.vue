@@ -3,11 +3,11 @@
         <div class="text-h3">{{$t('plugins')}}</div>
         <OSLangSelector v-model="langos">
             <template v-slot:Lua-Android>
-              <p>To add plugins, you have to add library with gradle or directly. After library added, before loading LuaEngine at native, call <code>AddLuaPlugin</code> method.</p>
+              <p>To add plugins, you have to add library with gradle or directly. After library added, before loading ToppingEngine at native, call <code>AddLuaPlugin</code> method.</p>
               <p>This will register the lua functions annotated from that class.</p>
               <pre v-highlightjs><span class="java">
-LuaEngine.AddPluginClass(XPluginView.class);
-final LuaEngine luaEngine = LuaEngine.getInstance();
+ToppingEngine.AddPluginClass(XPluginView.class);
+final ToppingEngine toppingEngine = ToppingEngine.getInstance();
 final HandlerThread ht = new HandlerThread("Lua Loader Thread", Process.THREAD_PRIORITY_URGENT_DISPLAY);
               </span></pre>
               <br/>
@@ -37,7 +37,7 @@ public class XPluginView extends LGView implements LuaInterface
 	}    
 }
               </span></pre><br/>
-              <p>At the example you see that there is an <code>@LuaFunction</code> annotation on top of <code>Create</code>. This helps LuaEngine 
+              <p>At the example you see that there is an <code>@LuaFunction</code> annotation on top of <code>Create</code>. This helps ToppingEngine 
               to parse function for lua vm. Let's look at <code>@LuaFunction</code> parameters.</p>
               <v-row>
                   <v-col cols="4" md="2">
@@ -45,7 +45,7 @@ public class XPluginView extends LGView implements LuaInterface
                   </v-col>
                   <v-col>
                       If you want to use lua functions to parse, parameters and return object. You can use <code>manual = true</code>. If you want 
-                      LuaEngine to parse it you leave it false
+                      ToppingEngine to parse it you leave it false
                   </v-col>
               </v-row>
               <v-divider></v-divider>
@@ -54,7 +54,7 @@ public class XPluginView extends LGView implements LuaInterface
                       <code class="blue-grey lighten-4 blue-grey--text">methodName</code>
                   </v-col>
                   <v-col>
-                      This is the LuaEngine method name of the function
+                      This is the ToppingEngine method name of the function
                   </v-col>
               </v-row>
               <v-divider></v-divider>
@@ -104,7 +104,7 @@ public class XPluginView extends LGView implements LuaInterface
 	}
 }
               </span></pre><br/>
-              <p>As you can see it is easy to add functions that will expose to LuaEngine on instance functions only difference is there is no <code>self</code> argument.</p>
+              <p>As you can see it is easy to add functions that will expose to ToppingEngine on instance functions only difference is there is no <code>self</code> argument.</p>
               <p>If you are extending from an exposed class like <code>LGView</code>, its exposed functions also will be added to your plugin class.</p>
               <p>If your class will have custom view there are some functions you have to override from LGView</p>
               <p>First override is Setup functions. In this function you will create your native view and set it to view object of <code>LGView</code>.</p>
@@ -151,7 +151,7 @@ public class XPluginView extends LGView implements LuaInterface
 	}
 }
                 </span></pre><br/>
-                <p>For example you want to add an event listener from LuaEngine that will set to an function. For this you will use <code>LuaTranslator</code> class.</p>
+                <p>For example you want to add an event listener from ToppingEngine that will set to an function. For this you will use <code>LuaTranslator</code> class.</p>
                 <p>This is an special class that converts lua functions to java functions. Now lets add an x changed listener.</p>
                 <pre v-highlightjs><span class="java">
 	@LuaFunction(manual = false, methodName = "SetX", arguments = { String.class })
@@ -187,10 +187,10 @@ public class XPluginView extends LGView implements LuaInterface
                 </span></pre><br/>
             </template>
             <template v-slot:Lua-iOS>
-                <p>To add plugins, you have to add library with gradle or directly. After library added, before loading LuaEngine at native, call <code>AddLuaPlugin</code> method.</p>
+                <p>To add plugins, you have to add library with gradle or directly. After library added, before loading ToppingEngine at native, call <code>AddLuaPlugin</code> method.</p>
                 <p>This will register the lua functions annotated from that class.</p>
                 <pre v-highlightjs><span class="objectivec">
-[LuaEngine AddPluginClass:[XPluginView class]];
+[ToppingEngine AddPluginClass:[XPluginView class]];
 [[CommonDelegate GetInstance] InitMain:self.window :nil];
                 </span></pre>
                 <br/>
@@ -231,7 +231,7 @@ public class XPluginView extends LGView implements LuaInterface
                   </v-col>
                   <v-col>
                       If you want to use lua functions to parse, parameters and return object. You can use <code>manual = true</code>. If you want 
-                      LuaEngine to parse it you leave it false
+                      ToppingEngine to parse it you leave it false
                   </v-col>
               </v-row>
               <v-divider></v-divider>
@@ -240,7 +240,7 @@ public class XPluginView extends LGView implements LuaInterface
                       <code class="blue-grey lighten-4 blue-grey--text">Method *m</code>
                   </v-col>
                   <v-col>
-                      This is the LuaEngine method name of the function
+                      This is the ToppingEngine method name of the function
                   </v-col>
               </v-row>
               <v-divider></v-divider>
@@ -369,7 +369,7 @@ public class XPluginView extends LGView implements LuaInterface
                     </v-col>
                     <v-col>
                         (Required)
-                        This function is where you will create your native view and return it to luaengine.
+                        This function is where you will create your native view and return it to toppingengine.
                     </v-col>
                 </v-row>
                 <v-divider></v-divider>
