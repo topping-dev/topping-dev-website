@@ -31,13 +31,13 @@
             <v-list-item @click="$router.replace(`/`)">
               <v-list-item-title>Topping Engine</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="$router.replace(`whylua`)">
+            <v-list-item @click="$router.replace(`/whylua`)">
               <v-list-item-title>{{$t('why-lua')}}</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="$router.replace(`whykotlin`)">
+            <v-list-item @click="$router.replace(`/whykotlin`)">
               <v-list-item-title>{{$t('why-kotlin')}}</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="$router.replace(`faq`)">
+            <v-list-item @click="$router.replace(`/faq`)">
               <v-list-item-title>{{$t('faq')}}</v-list-item-title>
             </v-list-item>
           </v-list-group>
@@ -47,22 +47,22 @@
             <template v-slot:activator>
               <v-list-item-title>{{$t('quick-start')}}</v-list-item-title>
             </template>
-            <v-list-item @click="$router.replace(`installation`)">
+            <v-list-item @click="$router.replace(`/installation`)">
               <v-list-item-title>{{$t('installation')}}</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="$router.replace(`howtouse`)">
+            <v-list-item @click="$router.replace(`/howtouse`)">
               <v-list-item-title>{{$t('how-to-use')}}</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="$router.replace(`resourcesystem`)">
+            <v-list-item @click="$router.replace(`/resourcesystem`)">
               <v-list-item-title>{{$t('resource-system')}}</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="$router.replace(`releases`)">
+            <v-list-item @click="$router.replace(`/releases`)">
               <v-list-item-title>{{$t('releases')}}</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="$router.replace(`contribution`)">
+            <v-list-item @click="$router.replace(`/contribution`)">
               <v-list-item-title>{{$t('contribution')}}</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="$router.replace(`plugins`)">
+            <v-list-item @click="$router.replace(`/plugins`)">
               <v-list-item-title>{{$t('plugins')}}</v-list-item-title>
             </v-list-item>
           </v-list-group>
