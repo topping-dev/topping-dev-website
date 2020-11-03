@@ -9,6 +9,31 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>{{title}}</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="white"
+            dark
+            outlined
+            v-bind="attrs"
+            v-on="on"
+          >
+            {{ "v" + versions[0].title }}
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in versions"
+            :key="index"
+            @click="handleVersionClick(item)"
+          >
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -30,6 +55,12 @@
             </template>
             <v-list-item @click="$router.replace(`/`)">
               <v-list-item-title>Topping Engine</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="$router.replace(`/howitworks`)">
+              <v-list-item-title>{{$t('how-it-works')}}</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="$router.replace(`/roadmap`)">
+              <v-list-item-title>{{$t('roadmap')}}</v-list-item-title>
             </v-list-item>
             <v-list-item @click="$router.replace(`/whylua`)">
               <v-list-item-title>{{$t('why-lua')}}</v-list-item-title>
@@ -100,12 +131,21 @@ export default {
   data: () => ({
       drawer: false,
       items: luamodules.modules.sort(),
-      title: ""
+      title: "",
+      versions: [
+        { title: "0.1.0" }
+      ]
   }),
   mounted() {
     vm = this;
     vm.$data.title = vm.$t('app-name');
   },
+  methods: {
+    handleVersionClick(version)
+    {
+        window.location.href = "/" + version.title;
+    }
+  }
 };
 
 EventBus.$on('setGlobalTitle', title => {

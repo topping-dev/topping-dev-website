@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from './views/Home.vue';
+import HowItWorks from './views/HowItWorks.vue';
+import Roadmap from './views/Roadmap.vue';
 import WhyLua from './views/WhyLua.vue';
 import WhyKotlin from './views/WhyKotlin.vue';
 import FAQ from './views/FAQ.vue';
@@ -24,6 +26,16 @@ export default new VueRouter({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/howitworks',
+      name: 'howitworks',
+      component: HowItWorks
+    },
+    {
+      path: '/roadmap',
+      name: 'roadmap',
+      component: Roadmap
     },
     {
       path: '/whylua',

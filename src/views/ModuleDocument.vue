@@ -15,7 +15,7 @@
                   <span v-else> </span>
                 </td>
                 <td :colspan="module.baseArr.length - index">
-                  <router-link v-if="index != 0 && index != (module.baseArr.length - 1)" :to="'/doc/' + item">{{item}}</router-link>
+                  <router-link v-if="index != 0 && index != (module.baseArr.length - 1)" :to="'/doc/' + item" target="_blank">{{item}}</router-link>
                   <span v-else>{{item}}</span>
                 </td>
             </tr>
@@ -34,7 +34,7 @@
           <v-row>
             <v-col cols="4" md="2">
               <span v-if="item.static"><code class="blue-grey lighten-4 blue-grey--text">static</code>{{' '}}</span>
-              <code v-if="luamodules.includes(item.returnOrg)" class="blue-grey lighten-4 blue-grey--text font-weight-bold" ><router-link :to="'/doc/' + item.returnOrg">{{item.returnOrg}}</router-link></code>
+              <code v-if="luamodules.includes(item.returnOrg)" class="blue-grey lighten-4 blue-grey--text font-weight-bold" ><router-link :to="'/doc/' + item.returnOrg"  target="_blank">{{item.returnOrg}}</router-link></code>
               <span v-else><code class="blue-grey lighten-4 blue-grey--text">{{item.returnOrg}}</code><span v-if="item.return !=''"><br/><code class="grey lighten-4 grey--text">{{item.return}}</code></span></span>
             </v-col>
             <v-col>
@@ -53,7 +53,7 @@
           @click="$router.replace(`/doc/${item}`)">
           <v-row>
             <v-col cols="4" md="2">
-              <code v-if="luamodules.includes(item.typeOrg)" class="blue-grey lighten-4 blue-grey--text font-weight-bold" ><router-link :to="'/doc/' + item.typeOrg">{{item.typeOrg}}</router-link></code>
+              <code v-if="luamodules.includes(item.typeOrg)" class="blue-grey lighten-4 blue-grey--text font-weight-bold" ><router-link :to="'/doc/' + item.typeOrg"  target="_blank">{{item.typeOrg}}</router-link></code>
               <div v-else><code class="blue-grey lighten-4 blue-grey--text">{{item.typeOrg}}</code><br/><code class="grey lighten-4 grey--text">{{item.type}}</code></div>
             </v-col>
             <v-col>
@@ -79,11 +79,11 @@
               <v-col>
                 <code>
                     <span v-if="item.static">static </span>
-                    <span v-if="luamodules.includes(item.returnOrg)"><router-link :to="'/doc/' + item.returnOrg">{{item.returnOrg}}</router-link></span>
+                    <span v-if="luamodules.includes(item.returnOrg)"><router-link :to="'/doc/' + item.returnOrg" target="_blank">{{item.returnOrg}}</router-link></span>
                     <span v-else>{{item.returnOrg}}</span>
                     <span> {{item.name}}{{'('}}</span>
                     <span v-for="(itemParam, indexParam) in item.parameters" :key="`param-${indexParam}`">
-                    <span v-if="luamodules.includes(itemParam.typeOrg)"><router-link :to="'/doc/' + itemParam.typeOrg">{{itemParam.typeOrg}}</router-link></span>
+                    <span v-if="luamodules.includes(itemParam.typeOrg)"><router-link :to="'/doc/' + itemParam.typeOrg" target="_blank">{{itemParam.typeOrg}}</router-link></span>
                     <span v-else>{{itemParam.typeOrg}}</span>
                     <span> {{itemParam.name}}</span>
                     <span v-if="indexParam != item.parameters.length - 1">, </span>
