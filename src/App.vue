@@ -154,4 +154,5 @@ EventBus.$on('setGlobalTitle', title => {
         vm.$data.title = title;
     }
 });
+
 </script>

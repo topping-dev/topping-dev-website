@@ -6,7 +6,7 @@
                 <div class="text-h4">Setting up environment</div><br/>
                 <p>For now developing applications with lua middleware is recommended on Android Studio. To ready your development environment you need to install <a href="https://github.com/EmmyLua/IntelliJ-EmmyLua">EmmyLua</a> plugin.</p>
                 <p>If you want you can download sample project <a href="https://www.github.com/topping-dev/topping-dev-android-sample">here</a>.</p>
-                <p>After Android Studio is ready, download <code>parser.jar</code>, <code>doclua.zip</code> and <code>luaprocessor.gradle</code> under project directory.</p>
+                <p>After Android Studio is ready, download <a :href='"https://github.com/topping-dev/topping-android/releases/download/v" + version + "/parser.jar"'>parser.jar</a>, <a :href='"https://github.com/topping-dev/topping-android/releases/download/v" + version + "/doclua.zip"'>doclua.zip</a> and <a :href='"https://github.com/topping-dev/topping-android/releases/download/v" + version + "/luaprocessor.gradle"'>luaprocessor.gradle</a> under project directory.</p>
                 <p>Add <code>apply from: 'luaprocessor.gradle'</code> under <code>apply plugin: 'com.android.application'</code></p>
                 <pre v-highlightjs><span class="gradle">
 apply plugin: 'com.android.application'
@@ -305,6 +305,12 @@ export default {
 				vm.$data.langos = lang + "-" + os;
 			});
 		});
+    },
+    computed: {
+        version: function () {
+            var locationArr = location.href.split('/');
+            return locationArr[3];
+        }
     },
     watch: {
         osToggle: function(val)

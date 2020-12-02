@@ -9,6 +9,7 @@
 
         <v-img src="./../../public/img/resource_system_image.png"></v-img>
 
+        <br/><div class="text-h4">Accessing resources from native code</div><br/>
         <OSLangSelector v-model="langos">
             <template v-slot:Lua-Android>
                 <p>Resource system uses <code>Android</code> default resource system.</p>

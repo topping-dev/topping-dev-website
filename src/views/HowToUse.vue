@@ -28,7 +28,7 @@
         android:background=&quot;#ffffff&quot;/&gt;
 &lt;/LinearLayout&gt;
         </span></pre>
-        <br/><p>As you can see it is very similar to Android xml layouts, only difference is, we define our lua id's as <code>lua:id</code>. Processor parses this xml on all 
+        <br/><br/><p>As you can see it is very similar to Android xml layouts, only difference is, we define our lua id's as <code>lua:id</code>. Processor parses this xml on all 
         platforms to generate native layouts.</p>
         <p>If processor cannot find any lua id's <code>android:id</code> will be used. It is advised to use <code>lua:id</code></p>
         <p>You can use normal layout tags like <code>LinearLayout</code> or defined by library ones like <code>LGLinearLayout</code></p>
