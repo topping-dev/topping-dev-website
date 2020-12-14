@@ -171,7 +171,7 @@ handler.sendEmptyMessage(LuaLoadHandler.INIT_MESSAGE);
 		<p>On your <code>AppDelegate</code> and <code>SceneDelegate</code> import firmware header.</p>
 		<pre v-highlightjs><span class="objectivec">
 #import "AppDelegate.h"
-#import &lt;luaios/luaios.h&gt;
+#import &lt;topping/topping.h&gt;
 		</span></pre><br/>
 		<p>Then set your <code>AppDelegate</code> delegates with <code>CommonDelegate</code></p>
 		<pre v-highlightjs><span class="objectivec">
