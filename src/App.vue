@@ -133,7 +133,7 @@ export default {
       items: luamodules.modules.sort(),
       title: "",
       versions: [
-        { title: "0.1.0" }
+        { title: "0.1.x" }
       ]
   }),
   mounted() {
