@@ -27,6 +27,7 @@
           <v-col class="primary rounded"><span class="white--text">{{$t('methods')}}</span></v-col>
         </v-row>
         <v-divider></v-divider>
+        <br/>
         <div
           v-for="(item, index) in module.functions" 
           :key="`function-${index}`" 
@@ -44,6 +45,7 @@
           </v-row>
           <v-divider></v-divider>
         </div>
+        <br/>
         <v-row v-if="module.variables != undefined && module.variables.length > 0">
           <v-col class="primary rounded"><span class="white--text">{{$t('variables')}}</span></v-col>
         </v-row>
