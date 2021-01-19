@@ -102,7 +102,7 @@ export default {
         languageToggle: function(val)
         {
             this.$emit('change', this.$data.languageToggle + "-" + this.$data.osToggle);
-            Storage.setOs(this.$data.languageToggle, function(){});
+            Storage.setLang(this.$data.languageToggle, function(){});
         }
     }
 }

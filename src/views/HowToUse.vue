@@ -32,8 +32,10 @@
         platforms to generate native layouts.</p>
         <p>If processor cannot find any lua id's <code>android:id</code> will be used. It is advised to use <code>lua:id</code></p>
         <p>You can use normal layout tags like <code>LinearLayout</code> or defined by library ones like <code>LGLinearLayout</code></p>
-        <p>After setting our layout, we are going to look at <code>testbed.lua</code> file to see how we connect business code with layouts.</p>
-        <pre v-highlightjs><span class="lua">
+		<LangSelector v-model="langos">
+            <template v-slot:Lua>
+				<p>After setting our layout, we are going to look at <code>testbed.lua</code> file to see how we connect business code with layouts.</p>
+        		<pre v-highlightjs><span class="lua">
 function DatePicker_PositiveButton(pGui)
 
 end
@@ -109,8 +111,104 @@ function ListViewTest_Constructor(pGUI, luacontext)
 end
 
 LuaForm.RegisterFormEvent("ListViewTest", LuaForm.FORM_EVENT_CREATE, ListViewTest_Constructor);
-        </span></pre>
+        		</span></pre>                
+            </template>
+            <template v-slot:Kotlin>
+                <p>After setting our layout, we are going to look at <code>KTInit.kt</code> and <code>TestBed.kt</code> file to see how we connect business code with layouts.</p>
+				<p>You can use <code>shared/src/commonMain/kotlin/yourpackage/</code> folder to create your shared source code in kotlin multiplatform</p>
+				<p>First we look at <code>KTInit.kt</code>, this file is the entry point of the application. We will define form events here.</p>
+				<pre v-highlightjs><span class="kotlin">
+import org.sombrenuit.dk.luaandroidkotlin.shared.scripts.TestBed
 
+class KTEntry {
+    companion object {
+        fun Init() {
+            LuaForm.RegisterFormEvent("ListViewTest", LuaForm.FORM_EVENT_CREATE, TestBed::ListViewTest_Constructor)
+        }
+    }
+}
+				</span></pre>
+				<p>This will be explained later, let's look at your code created at, <code>TestBed.kt</code></p>
+        		<pre v-highlightjs><span class="kotlin">
+import dev.topping.kotlin.*
+import kotlin.reflect.KCallable
+
+class TestBed {
+    companion object {
+        fun onItemSelected(adapter: LGRecyclerViewAdapter?, parent: LGView?, detail: LGView?, index: Int, data: Any?) {
+            val form = LuaForm.GetActiveForm()
+            if(index == 0)
+                LuaForm.CreateWithUI(form?.GetContext(), "formTest", "form.xml")
+            else if(index == 1)
+                LuaForm.CreateWithUI(form?.GetContext(), "hsvTest", "hsv.xml")
+            else if(index == 2)
+                LuaForm.CreateWithUI(form?.GetContext(), "svTest", "sv.xml")
+            else if(index == 3)
+                LuaLog.D("asd", "asd")
+            else if(index == 4)
+                LuaDialog.MessageBox(form?.GetContext(), "Title", "Message");
+            else if(index == 5) {
+                val datePicker = LuaDialog.Create(form?.GetContext(), LuaDialog.DIALOG_TYPE_DATEPICKER);
+                datePicker?.SetPositiveButton("Ok", null)
+                datePicker?.SetNegativeButton("Cancel", null)
+                datePicker?.SetTitle("Title")
+                datePicker?.SetMessage("Message")
+                datePicker?.SetDateManual(17, 7, 1985)
+                datePicker?.Show()
+            }
+            else if(index == 6) {
+                val timePicker = LuaDialog.Create(form?.GetContext(), LuaDialog.DIALOG_TYPE_TIMEPICKER);
+                timePicker?.SetPositiveButton("Ok", null)
+                timePicker?.SetNegativeButton("Cancel", null)
+                timePicker?.SetTitle("Title")
+                timePicker?.SetMessage("Message")
+                timePicker?.SetTimeManual(17, 7)
+                timePicker?.Show()
+            }
+            else
+                LuaToast.Show(form?.GetContext(), "Toast test", 2000);
+        }
+
+        fun onCreateViewHolder(adapter: LGRecyclerViewAdapter?, parent: LGView?, type: Int, context: LuaContext?) : Any
+        {
+            val inflator = LuaViewInflator.Create(context)
+            val viewToRet = inflator?.ParseFile("testbedAdapter.xml", parent)
+            return viewToRet!!
+        }
+
+        fun onBindViewHolder(adapter: LGRecyclerViewAdapter?, view: LGView?, index: Int, obj:Any?)
+        {
+            val tvTitle:LGTextView? = view?.GetViewById("testBedTitle") as LGTextView?
+            tvTitle?.SetText(obj as String)
+        }
+
+        fun onGetItemViewType(adapter: LGRecyclerViewAdapter?, type: Int) : Int {
+            return 1
+        }
+
+        fun ListViewTest_Constructor(pGUI: LGView, luacontext : LuaContext)
+        {
+            var pAdapter = LGRecyclerViewAdapter.Create(luacontext, "ListAdapterTest")
+            pAdapter?.SetOnItemSelected(::onItemSelected)
+            pAdapter?.SetOnCreateViewHolder(::onCreateViewHolder as KCallable&lt;Any&gt;)
+            pAdapter?.SetOnBindViewHolder(::onBindViewHolder)
+            pAdapter?.SetGetItemViewType(::onGetItemViewType as KCallable&lt;Int&gt;)
+            pAdapter?.AddValue(0, "Form Ui");
+            pAdapter?.AddValue(1, "Horizontal Scroll View");
+            pAdapter?.AddValue(2, "Vertical Scroll View");
+            pAdapter?.AddValue(3, "Map");
+            pAdapter?.AddValue(4, "Message Box");
+            pAdapter?.AddValue(5, "Date Picker Dialog");
+            pAdapter?.AddValue(6, "Time Picker Dialog");
+            pAdapter?.AddValue(7, "Toast");
+            (pGUI as LGRecyclerView).SetAdapter(pAdapter);
+            pAdapter?.Notify();
+        }
+    }
+}
+        		</span></pre>
+            </template>
+        </LangSelector>
     <p>As you can see the method <code><router-link to="/doc/LuaForm#RegisterFormEvent(String luaId, int event, LuaTranslator lt)">LuaForm.RegisterFormEvent</router-link></code> is used to setup <code>RecyclerView</code>
      that we created on xml.</p>
     <p>First parameter is the <code>lua:id</code> that we defined on our xml.</p>
@@ -166,6 +264,11 @@ LuaLoadHandler handler = new LuaLoadHandler(this, ht.getLooper())
 //Starts the loader thread.
 handler.sendEmptyMessage(LuaLoadHandler.INIT_MESSAGE);
 		</span></pre><br/>
+		<p>Also dont forget to add <code>LuaForm</code> to <code>AndroidManifest.xml</code>, to move between activities.</p>
+		<pre v-highlightjs><span class="java">
+ &lt;activity android:name="dev.topping.android.LuaForm"&gt;
+ &lt;/activity&gt;
+		</span></pre><br />
         </template>
 		<template v-slot:Lua-iOS>
 		<p>On your <code>AppDelegate</code> and <code>SceneDelegate</code> import firmware header.</p>
@@ -222,10 +325,12 @@ handler.sendEmptyMessage(LuaLoadHandler.INIT_MESSAGE);
 		</span></pre><br/>
         </template>
 		<template v-slot:Kotlin-Android>
-            Working on this miracle :D
+            <p>If you are using <a href="https://github.com/topping-dev/topping-kotlin-sample">sample project</a> you don't need to set anything.</p>
+			<p>Setup phase happens on <code>Platform.kt</code>, native code calls this kotlin class to init at androidApp project.</p>
         </template>
 		<template v-slot:Kotlin-iOS>
-            Working on this miracle :D
+            <p>If you are using <a href="https://github.com/topping-dev/topping-kotlin-sample">sample project</a> you don't need to set anything.</p>
+			<p>Setup phase happens on <code>Platform.kt</code>, native code calls this kotlin class to init at iosApp project.</p>
         </template>
     </OSLangSelector>
 	<p>Now you are set, no extra code required.</p>
@@ -236,6 +341,7 @@ handler.sendEmptyMessage(LuaLoadHandler.INIT_MESSAGE);
 
 <script>
 import OSLangSelector from '../components/OSLangSelector';
+import LangSelector from '../components/LangSelector';
 import NextPrevPage from '../components/NextPrevPage';
 import Storage from './../storage';
 
@@ -243,6 +349,7 @@ export default {
     name: "HowToUse",
     components: {
 		OSLangSelector,
+		LangSelector,
 		NextPrevPage
 	},
 	data: () => ({

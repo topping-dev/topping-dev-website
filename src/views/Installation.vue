@@ -27,6 +27,20 @@ android {
                 <p>It supports most of the resource extensions that exist on Android resource system. For example, you can use <code>value-port</code> and <code>value-land</code>.
                 It also supports base styles.</p>                
             </template>
+            <template v-slot:Kotlin-Android>
+                <div class="text-h4">Setting up environment</div><br/>
+                <p>For now developing applications with kotlin you have to install android studio and kotlin multiplatform plugin<br/>
+                <div class="text-h4">Directory Structure</div><br/>
+                <p>On <code>Android</code> ToppingEngine uses Android's own resource system to load ui components in androidApp folder. For example you will use layout folder to add your layout xml's.</p>              
+            </template>
+            <template v-slot:Kotlin-iOS>
+                <div class="text-h4">Setting up environment</div><br/>
+                <p>For now developing applications with kotlin you have to install android studio and kotlin multiplatform plugin<br/>
+                <div class="text-h4">Directory Structure</div><br/>
+                <p>On <code>iOS</code> ToppingEngine uses <code>Resources</code> folder to load layout code, in iosApp project</p>
+                <p>It supports most of the resource extensions that exist on Android resource system. For example, you can use <code>value-port</code> and <code>value-land</code>.
+                It also supports base styles.</p>                
+            </template>
         </OSLangSelector>        
         <p>Entry point is <code>defines.lua</code>. This lua file helps you to set startup configuration of some parameters.</p>
         <p>Example and parameters are defined below.</p>
@@ -149,8 +163,8 @@ MainForm = "Main";
             </v-col>
         </v-row>
         <v-divider></v-divider><br/>
-        <OSLangSelector v-model="langos">
-            <template v-slot:Lua-Android>
+        <OSSelector v-model="langos">
+            <template v-slot:Android>
                 <div class="text-h5">Sample directory structure</div><br/>
                 <v-treeview
                     v-model="scriptTreeAndroid"
@@ -169,7 +183,7 @@ MainForm = "Main";
                     </template>
                 </v-treeview>
             </template>
-            <template v-slot:Lua-iOS>
+            <template v-slot:iOS>
                 <div class="text-h5">Sample directory structure</div><br/>
                 <v-treeview
                     v-model="scriptTreeIOS"
@@ -188,13 +202,14 @@ MainForm = "Main";
                     </template>
                 </v-treeview>
             </template>
-        </OSLangSelector>
+        </OSSelector>
         <NextPrevPage prev="" :next="$t('how-to-use')" nextRoute="howtouse"></NextPrevPage>
     </v-container>
 </template>
 
 <script>
 import OSLangSelector from '../components/OSLangSelector';
+import OSSelector from '../components/OSSelector';
 import NextPrevPage from '../components/NextPrevPage';
 import Storage from './../storage';
 
@@ -202,6 +217,7 @@ export default {
     name: "Installation",
     components: {
         OSLangSelector,
+        OSSelector,
         NextPrevPage
     },
     data: () => ({
@@ -308,8 +324,9 @@ export default {
     },
     computed: {
         version: function () {
-            var locationArr = location.href.split('/');
-            return locationArr[3];
+            /*var locationArr = location.href.split('/');
+            return locationArr[3];*/
+            return "0.1.1"
         }
     },
     watch: {

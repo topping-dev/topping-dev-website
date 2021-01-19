@@ -3,9 +3,12 @@
         <div class="text-h3">{{$t('resource-system')}}</div>
         <div style="font-size:medium; margin-bottom:40px; border-top:1px solid black;" class="nocontent">
         </div>
-        <p>Resources are provided via <code>LR</code> class in lua files. ToppingEngine automatically generates resource documentation on first build.</p>
+        <p>Resources are provided via <code>LR</code> class in lua or kotlin files. ToppingEngine automatically generates resource documentation on first build.</p>
+        <p>On kotlin you have to build androidApp first.</p>
         <p>After that you can set values from resource directly using <code>LR</code> class.</p>
         <p><code>LR</code> resources are converted to <code>LuaRef</code> at background.</p>
+        <p>Android app might have more resources than ios app that comes from android libraries because of that some resources might not available to ios app.</p>
+        <p>Use the resources created by yourself.</p>
 
         <v-img src="./../../public/img/resource_system_image.png"></v-img>
 
