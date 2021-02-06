@@ -9,6 +9,7 @@ import FAQ from './views/FAQ.vue';
 import Installation from './views/Installation.vue';
 import HowToUse from './views/HowToUse.vue';
 import ResourceSystem from './views/ResourceSystem.vue';
+import Debugging from './views/Debugging.vue';
 import Releases from './views/Releases.vue';
 import Contribution from './views/Contribution.vue';
 import Plugins from './views/Plugins.vue';
@@ -66,6 +67,11 @@ export default new VueRouter({
       path: '/resourcesystem',
       name: 'resourcesystem',
       component: ResourceSystem
+    },
+    {
+      path: '/debugging',
+      name: 'debugging',
+      component: Debugging
     },
     {
       path: '/releases',

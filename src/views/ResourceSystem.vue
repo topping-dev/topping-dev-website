@@ -120,7 +120,7 @@
                 </span></pre>
             </template>
         </OSLangSelector>
-        <NextPrevPage :prev="$t('how-to-use')" prevRoute="howtouse" :next="$t('releases')" nextRoute="releases"></NextPrevPage>
+        <NextPrevPage :prev="$t('how-to-use')" prevRoute="howtouse" :next="$t('debugging')" nextRoute="debugging"></NextPrevPage>
     </v-container>
 </template>
 

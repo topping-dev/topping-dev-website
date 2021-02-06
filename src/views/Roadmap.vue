@@ -6,7 +6,8 @@
 
     <v-checkbox v-model="checkbox" readonly label="Kotlin Native Android integration"></v-checkbox>
     <v-checkbox v-model="checkbox" readonly label="Kotlin Native iOS integration"></v-checkbox>
-		<v-checkbox readonly label="CoordinatorLayout"></v-checkbox>
+		<v-checkbox v-model="checkbox" readonly label="ConstraintLayout"></v-checkbox>
+    <v-checkbox readonly label="Lua proguard"></v-checkbox>
     <v-checkbox readonly label="RelativeLayout"></v-checkbox>
     <v-checkbox readonly label="Permissions"></v-checkbox>
         

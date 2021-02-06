@@ -16,7 +16,7 @@
                 <vue-markdown-plus>{{readmeIos}}</vue-markdown-plus>
             </template>
         </OSLangSelector>
-        <NextPrevPage :next="$t('contribution')" :prev="$t('resource-system')" prevRoute="resourcesystem" nextRoute="contribution"></NextPrevPage>
+        <NextPrevPage :next="$t('contribution')" :prev="$t('debugging')" prevRoute="debugging" nextRoute="contribution"></NextPrevPage>
     </v-container>
 </template>
 

@@ -87,6 +87,9 @@
             <v-list-item @click="$router.replace(`/resourcesystem`)">
               <v-list-item-title>{{$t('resource-system')}}</v-list-item-title>
             </v-list-item>
+            <v-list-item @click="$router.replace(`/debugging`)">
+              <v-list-item-title>{{$t('debugging')}}</v-list-item-title>
+            </v-list-item>
             <v-list-item @click="$router.replace(`/releases`)">
               <v-list-item-title>{{$t('releases')}}</v-list-item-title>
             </v-list-item>
