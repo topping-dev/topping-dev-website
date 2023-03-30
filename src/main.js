@@ -5,11 +5,13 @@ import router from './router';
 import i18n from './i18n';
 import VueHighlightJS from './vuehighlight'
 import { EventBus } from './event-bus';
-import 'highlight.js/styles/darcula.css';
+import 'highlight.js/styles/androidstudio.css';
 
 Vue.use(VueHighlightJS);
 
 Vue.config.productionTip = false
+
+import "@/assets/global.css"
 
 var app = new Vue({
   vuetify,

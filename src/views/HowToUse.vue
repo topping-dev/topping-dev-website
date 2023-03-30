@@ -37,80 +37,172 @@
 				<p>After setting our layout, we are going to look at <code>testbed.lua</code> file to see how we connect business code with layouts.</p>
         		<pre v-highlightjs><span class="lua">
 function DatePicker_PositiveButton(pGui)
-
+	
 end
 
 function DatePicker_NegativeButton(pGui)
-
+    
 end
 
 function TimePicker_PositiveButton(pGui)
-
+    
 end
 
 function TimePicker_NegativeButton(pGui)
+    
+end
 
+function ListViewTest_AdapterView_ItemSelected(pGui, listView, detailView, position, data)
+    local form = LuaForm.getActiveForm();
+    if position == 0 then
+        LuaForm.createWithUI(form:getContext(), "formTest", "form.xml");
+    elseif position == 1 then
+        LuaForm.createWithUI(form:getContext(), "hsvTest", "hsv.xml");
+    elseif position == 2 then
+        LuaForm.createWithUI(form:getContext(), "svTest", "sv.xml");
+    elseif position == 3 then
+        --Map
+    elseif position == 4 then
+        LuaDialog.messageBox(form:getContext(), "Title", "Message");
+    elseif position == 5 then
+    local datePicker = LuaDialog.create(form:getContext(), LuaDialog.DIALOG_TYPE_DATEPICKER);
+        datePicker:setPositiveButton("Ok", LuaTranslator.register(datePicker, "DatePicker_PositiveButton"));
+        datePicker:setNegativeButton("Cancel", LuaTranslator.register(datePicker, "DatePicker_NegativeButton"));
+        datePicker:setTitle("Title");
+        datePicker:setMessage("Message");
+        datePicker:setDateManual(17, 7, 1985);
+        datePicker:show();
+    elseif position == 6 then
+        local timePicker = LuaDialog.create(form:getContext(), LuaDialog.DIALOG_TYPE_TIMEPICKER);
+        timePicker:setPositiveButton("Ok", LuaTranslator.register(timePicker, "TimePicker_PositiveButton"));
+        timePicker:setNegativeButton("Cancel", LuaTranslator.register(timePicker, "TimePicker_NegativeButton"));
+        timePicker:setTitle("Title");
+        timePicker:setMessage("Message");
+        timePicker:setTimeManual(17, 7);
+        timePicker:show();
+    else
+        LuaToast.show(form:getContext(), "Toast test", 2000);
+    end
 end
 
 function ListViewTest_Constructor(pGUI, luacontext)
-	local pAdapter = LGRecyclerViewAdapter.Create(luacontext, "ListAdapterTest");
-	pAdapter:SetOnItemSelected(function(adapter, parent, detail, index, object)
-		local form = LuaForm.GetActiveForm();
-		if index == 0 then
-			LuaForm.CreateWithUI(form:GetContext(), "formTest", "form.xml");
-		elseif index == 1 then
-			LuaForm.CreateWithUI(form:GetContext(), "hsvTest", "hsv.xml");
-		elseif index == 2 then
-			LuaForm.CreateWithUI(form:GetContext(), "svTest", "sv.xml");
-		elseif index == 3 then
-			--Map
-		elseif index == 4 then
-			LuaDialog.MessageBox(form:GetContext(), "Title", "Message");
-		elseif index == 5 then
-			local datePicker = LuaDialog.Create(form:GetContext(), LuaDialog.DIALOG_TYPE_DATEPICKER);
-			datePicker:SetPositiveButton("Ok", LuaTranslator.Register(datePicker, "DatePicker_PositiveButton"));
-			datePicker:SetNegativeButton("Cancel", LuaTranslator.Register(datePicker, "DatePicker_NegativeButton"));
-			datePicker:SetTitle("Title");
-			datePicker:SetMessage("Message");
-			datePicker:SetDateManual(17, 7, 1985);
-			datePicker:Show();
-		elseif index == 6 then
-			local timePicker = LuaDialog.Create(form:GetContext(), LuaDialog.DIALOG_TYPE_TIMEPICKER);
-			timePicker:SetPositiveButton("Ok", LuaTranslator.Register(timePicker, "TimePicker_PositiveButton"));
-			timePicker:SetNegativeButton("Cancel", LuaTranslator.Register(timePicker, "TimePicker_NegativeButton"));
-			timePicker:SetTitle("Title");
-			timePicker:SetMessage("Message");
-			timePicker:SetTimeManual(17, 7);
-			timePicker:Show();
-		else
-			LuaToast.Show(form:GetContext(), "Toast test", 2000);
-		end
-	end);
-	pAdapter:SetOnCreateViewHolder(function(adapter, parent, type, context)
-		local inflator = LuaViewInflator.Create(context);
-		local viewToRet = inflator:ParseFile("testbedAdapter.xml", pGUI);
-		return viewToRet;
-	end);
-	pAdapter:SetOnBindViewHolder(function(adapter, view, index, object)
-		local tvTitle = view:GetViewById("testBedTitle");
-		tvTitle:SetText(object);
-	end);
-	pAdapter:SetGetItemViewType(function(adapter, type)
-		return 1;
-	end);
-	pAdapter:AddValue(0, "Form Ui");
-	pAdapter:AddValue(1, "Horizontal Scroll View");
-	pAdapter:AddValue(2, "Vertical Scroll View");
-	pAdapter:AddValue(3, "Map");
-	pAdapter:AddValue(4, "Message Box");
-	pAdapter:AddValue(5, "Date Picker Dialog");
-	pAdapter:AddValue(6, "Time Picker Dialog");
-	pAdapter:AddValue(7, "Toast");
-	pGUI:SetAdapter(pAdapter);
-	pAdapter:Notify();
+    local pAdapter = LGRecyclerViewAdapter.create(luacontext, "ListAdapterTest");
+    pAdapter:setOnItemSelected(function(adapter, parent, detail, index, object)
+        local form = LuaForm.getActiveForm();
+        if index == 0 then
+            local to = LuaForm.createWithUI(form:GetContext(), LR.id.formTestLL, LR.layout.form);
+            luacontext:startForm(to)
+        elseif index == 1 then
+            local to = LuaForm.createWithUI(form:GetContext(), LR.id.hsvTestLL, LR.layout.hsv);
+            luacontext:startForm(to)
+        elseif index == 2 then
+            local to = LuaForm.createWithUI(form:GetContext(), LR.id.svTestLL, LR.layout.sv);
+            luacontext:startForm(to)
+        elseif index == 3 then
+            --Map
+        elseif index == 4 then
+            LuaDialog.messageBox(form:getContext(), LR.string.teststring, LR.string.teststring);
+        elseif index == 5 then
+            local datePicker = LuaDialog.create(form:getContext(), LuaDialog.DIALOG_TYPE_DATEPICKER);
+            datePicker:setPositiveButton(LR.string.ok, LuaTranslator.register(datePicker, "DatePicker_PositiveButton"));
+            datePicker:setNegativeButton(LR.string.cancel, LuaTranslator.register(datePicker, "DatePicker_NegativeButton"));
+            datePicker:setTitle(LR.string.title);
+            datePicker:setMessage(LR.string.message);
+            datePicker:setDateManual(17, 7, 1985);
+            datePicker:show();
+        elseif index == 6 then
+            local timePicker = LuaDialog.create(form:getContext(), LuaDialog.DIALOG_TYPE_TIMEPICKER);
+            timePicker:setPositiveButton(LR.string.ok, LuaTranslator.register(timePicker, "TimePicker_PositiveButton"));
+            timePicker:setNegativeButton(LR.string.cancel, LuaTranslator.register(timePicker, "TimePicker_NegativeButton"));
+            timePicker:setTitle(LR.string.title);
+            timePicker:setMessage(LR.string.message);
+            timePicker:setTimeManual(17, 7);
+            timePicker:show();
+        elseif index == 7 then
+            LuaToast.show(form:getContext(), LR.string.toast_message, 2000);
+        elseif index == 8 then
+            local to = LuaForm.createWithUI(form:getContext(), LR.id.frameTest, LR.layout.frame);
+            luacontext:startForm(to)
+        elseif index == 9 then
+            local to = LuaForm.createWithUI(form:getContext(), LR.id.constraintTest, LR.layout.constraint);
+            luacontext:startForm(to)
+        end
+    end);
+    pAdapter:setOnCreateViewHolder(function(adapter, parent, type, context)
+        local inflator = LuaViewInflator.create(context);
+        local viewToRet = inflator:inflate(LR.layout.testbedadapter, pGUI);
+        return viewToRet;
+    end);
+    pAdapter:setOnBindViewHolder(function(adapter, view, index, object)
+        local tvTitle = view:getViewById(LR.id.testBedTitle);
+        tvTitle:setText(object);
+        tvTitle:setTextColorRef(LR.color.colorAccent);
+    end);
+    pAdapter:setGetItemViewType(function(adapter, type)
+        return 1;
+    end);
+    pAdapter:addValue("Form Ui");
+    pAdapter:addValue("Horizontal Scroll View");
+    pAdapter:addValue("Vertical Scroll View");
+    pAdapter:addValue("Map");
+    pAdapter:addValue("Message Box");
+    pAdapter:addValue("Date Picker Dialog");
+    pAdapter:addValue("Time Picker Dialog");
+    pAdapter:addValue("Toast");
+    pAdapter:addValue("FrameLayout");
+    pAdapter:addValue("ConstraintLayout");
+    pGUI:setAdapter(pAdapter);
+    pAdapter:notify();
 end
 
-LuaForm.RegisterFormEvent("ListViewTest", LuaForm.FORM_EVENT_CREATE, ListViewTest_Constructor);
+function Toolbar_Constructor(pToolbar, luacontext)
+    pToolbar:setSubtitle("Test title");
+end
+
+function Main_Constructor(pForm, luacontext)
+    local navController = pForm:getFragmentManager():findFragmentById(LR.id.nav_host_fragment):getNavController()
+    local toolbar = pForm:getViewById(LR.id.ToolbarTest)
+    LuaNavigationUI.setupWithNavController(toolbar, navController)
+    LuaNavigationUI.setupWithNavController(toolbar, navController)
+end
+
+function Pager_Constructor(pViewPager, luacontext)
+    local pagerAdapter = LGFragmentStateAdapter.createFromForm(luacontext:GetForm())
+    pagerAdapter:cetCreateFragment(function(adapter, position)
+        local args = {}
+        args["position"] = position
+        return LuaFragment.createWithArgs(luacontext, LR.id.formTestLL, args)
+    end)
+    pagerAdapter:setGetItemCount(function(adapter)
+        return 4
+    end)
+    pViewPager:setAdapter(pagerAdapter)
+    local tabLayout = luacontext:getForm():getViewById(LR.id.tab)
+    pViewPager:setTabLayout(tabLayout, function(pager, pos)
+        local tab = LuaTab.create()
+        tab:setText(tostring(pos))
+        return tab
+    end)
+end
+
+function MenuFragment_Create_View(pFragment, luacontext, inflater, container, savedInstanceState)
+    return inflater:inflate(LR.layout.form, container)
+end
+
+function ReceiveFragment_Create_View(pFragment, luacontext, inflater, container, savedInstanceState)
+    return inflater:inflate(LR.layout.testbed, container)
+end
+
+function FormTest_Create_View(pFragment, luacontext, inflater, container, savedInstanceState)
+    return inflater:inflate(LR.layout.form, container)
+end
+
+LuaEvent.registerUIEvent(LR.id.ListViewTest, LuaEvent.UI_EVENT_VIEW_CREATE, ListViewTest_Constructor);
+LuaEvent.registerUIEvent(LR.id.ToolbarTest, LuaEvent.UI_EVENT_VIEW_CREATE, Toolbar_Constructor);
+LuaEvent.registerUIEvent(LR.id.Main, LuaEvent.UI_EVENT_CREATE, Main_Constructor);
+--LuaEvent.registerUIEvent(LR.id.pager, LuaEvent.UI_EVENT_VIEW_CREATE, Pager_Constructor);
+LuaEvent.registerUIEvent(LR.id.menuFragment, LuaEvent.UI_EVENT_FRAGMENT_CREATE_VIEW, MenuFragment_Create_View);
+LuaEvent.registerUIEvent(LR.id.receiveFragment, LuaEvent.UI_EVENT_FRAGMENT_CREATE_VIEW, ReceiveFragment_Create_View);
         		</span></pre>                
             </template>
             <template v-slot:Kotlin>
@@ -118,12 +210,21 @@ LuaForm.RegisterFormEvent("ListViewTest", LuaForm.FORM_EVENT_CREATE, ListViewTes
 				<p>You can use <code>shared/src/commonMain/kotlin/yourpackage/</code> folder to create your shared source code in kotlin multiplatform</p>
 				<p>First we look at <code>KTInit.kt</code>, this file is the entry point of the application. We will define form events here.</p>
 				<pre v-highlightjs><span class="kotlin">
-import org.sombrenuit.dk.luaandroidkotlin.shared.scripts.TestBed
+import dev.topping.kotlin.*
+import dev.topping.kotlinsample.Form
+import dev.topping.kotlinsample.MainForm
+import dev.topping.kotlinsample.MenuFragment
 
 class KTEntry {
     companion object {
         fun Init() {
-            LuaForm.RegisterFormEvent("ListViewTest", LuaForm.FORM_EVENT_CREATE, TestBed::ListViewTest_Constructor)
+            LuaEvent.registerUIEvent(
+                LR.id.ListViewTest,
+                LuaEvent.UI_EVENT_VIEW_CREATE,
+                TestBed::ListViewTest_Constructor
+            )
+            LuaEvent.registerFragment("menuFragment", ::MenuFragment)
+            LuaEvent.registerForm("Main", ::MainForm)
         }
     }
 }
@@ -135,89 +236,140 @@ import kotlin.reflect.KCallable
 
 class TestBed {
     companion object {
-        fun onItemSelected(adapter: LGRecyclerViewAdapter?, parent: LGView?, detail: LGView?, index: Int, data: Any?) {
-            val form = LuaForm.GetActiveForm()
+        private fun onItemSelected(adapter: LGRecyclerViewAdapter?, parent: LGView?, detail: LGView?, index: Int, data: Any?) {
+            val form = LuaForm.getActiveForm()
             if(index == 0)
-                LuaForm.CreateWithUI(form?.GetContext(), "formTest", "form.xml")
+                LuaForm.createWithUI(form?.getContext()!!, LR.id.formTestLL, LR.layout.form)
             else if(index == 1)
-                LuaForm.CreateWithUI(form?.GetContext(), "hsvTest", "hsv.xml")
+                LuaForm.createWithUI(form?.getContext()!!, LR.id.hsvTestLL, LR.layout.hsv)
             else if(index == 2)
-                LuaForm.CreateWithUI(form?.GetContext(), "svTest", "sv.xml")
+                LuaForm.createWithUI(form?.getContext()!!, LR.id.svTestLL, LR.layout.sv)
             else if(index == 3)
-                LuaLog.D("asd", "asd")
+                LuaLog.d("asd", "asd")
             else if(index == 4)
-                LuaDialog.MessageBox(form?.GetContext(), "Title", "Message");
+                LuaDialog.messageBoxInternal(form?.getContext()!!, "Title", "Message")
             else if(index == 5) {
-                val datePicker = LuaDialog.Create(form?.GetContext(), LuaDialog.DIALOG_TYPE_DATEPICKER);
-                datePicker?.SetPositiveButton("Ok", null)
-                datePicker?.SetNegativeButton("Cancel", null)
-                datePicker?.SetTitle("Title")
-                datePicker?.SetMessage("Message")
-                datePicker?.SetDateManual(17, 7, 1985)
-                datePicker?.Show()
+                val datePicker = LuaDialog.create(form?.getContext()!!, LuaDialog.DIALOG_TYPE_DATEPICKER)
+                datePicker.setPositiveButtonInternal("Ok", null)
+                datePicker.setNegativeButtonInternal("Cancel", null)
+                datePicker.setTitle("Title")
+                datePicker.setMessage("Message")
+                datePicker.setDateManual(17, 7, 1985)
+                datePicker.show()
             }
             else if(index == 6) {
-                val timePicker = LuaDialog.Create(form?.GetContext(), LuaDialog.DIALOG_TYPE_TIMEPICKER);
-                timePicker?.SetPositiveButton("Ok", null)
-                timePicker?.SetNegativeButton("Cancel", null)
-                timePicker?.SetTitle("Title")
-                timePicker?.SetMessage("Message")
-                timePicker?.SetTimeManual(17, 7)
-                timePicker?.Show()
+                val timePicker = LuaDialog.create(form?.getContext()!!, LuaDialog.DIALOG_TYPE_TIMEPICKER)
+                timePicker.setPositiveButtonInternal("Ok", null)
+                timePicker.setNegativeButtonInternal("Cancel", null)
+                timePicker.setTitle("Title")
+                timePicker.setMessage("Message")
+                timePicker.setTimeManual(17, 7)
+                timePicker.show()
             }
             else
-                LuaToast.Show(form?.GetContext(), "Toast test", 2000);
+                LuaToast.show(form?.getContext()!!, "Toast test", 2000)
         }
 
-        fun onCreateViewHolder(adapter: LGRecyclerViewAdapter?, parent: LGView?, type: Int, context: LuaContext?) : Any
+        private fun onCreateViewHolder(adapter: LGRecyclerViewAdapter?, parent: LGView?, type: Int, context: LuaContext?) : LGView
         {
-            val inflator = LuaViewInflator.Create(context)
-            val viewToRet = inflator?.ParseFile("testbedAdapter.xml", parent)
+            val inflator = LuaViewInflator.create(context!!)
+            val viewToRet = inflator.inflate(LR.layout.testbedadapter, parent)
             return viewToRet!!
         }
 
-        fun onBindViewHolder(adapter: LGRecyclerViewAdapter?, view: LGView?, index: Int, obj:Any?)
+        private fun onBindViewHolder(adapter: LGRecyclerViewAdapter?, view: LGView?, index: Int, obj:Any?)
         {
-            val tvTitle:LGTextView? = view?.GetViewById("testBedTitle") as LGTextView?
-            tvTitle?.SetText(obj as String)
+            val tvTitle:LGTextView? = view?.getViewById(LR.id.testBedTitle) as LGTextView?
+            tvTitle?.setTextInternal(obj as String)
         }
 
-        fun onGetItemViewType(adapter: LGRecyclerViewAdapter?, type: Int) : Int {
+        private fun onGetItemViewType(adapter: LGRecyclerViewAdapter?, type: Int) : Int {
             return 1
         }
 
         fun ListViewTest_Constructor(pGUI: LGView, luacontext : LuaContext)
         {
-            var pAdapter = LGRecyclerViewAdapter.Create(luacontext, "ListAdapterTest")
-            pAdapter?.SetOnItemSelected(::onItemSelected)
-            pAdapter?.SetOnCreateViewHolder(::onCreateViewHolder as KCallable&lt;Any&gt;)
-            pAdapter?.SetOnBindViewHolder(::onBindViewHolder)
-            pAdapter?.SetGetItemViewType(::onGetItemViewType as KCallable&lt;Int&gt;)
-            pAdapter?.AddValue(0, "Form Ui");
-            pAdapter?.AddValue(1, "Horizontal Scroll View");
-            pAdapter?.AddValue(2, "Vertical Scroll View");
-            pAdapter?.AddValue(3, "Map");
-            pAdapter?.AddValue(4, "Message Box");
-            pAdapter?.AddValue(5, "Date Picker Dialog");
-            pAdapter?.AddValue(6, "Time Picker Dialog");
-            pAdapter?.AddValue(7, "Toast");
-            (pGUI as LGRecyclerView).SetAdapter(pAdapter);
-            pAdapter?.Notify();
+            val pAdapter = LGRecyclerViewAdapter.create(luacontext, "ListAdapterTest")
+            pAdapter.setOnItemSelected(Companion::onItemSelected)
+            pAdapter.setOnCreateViewHolder(Companion::onCreateViewHolder)
+            pAdapter.setOnBindViewHolder(Companion::onBindViewHolder)
+            pAdapter.setGetItemViewType(Companion::onGetItemViewType)
+            pAdapter.addValue("Form Ui")
+            pAdapter.addValue("Horizontal Scroll View")
+            pAdapter.addValue("Vertical Scroll View")
+            pAdapter.addValue("Map")
+            pAdapter.addValue("Message Box")
+            pAdapter.addValue("Date Picker Dialog")
+            pAdapter.addValue("Time Picker Dialog")
+            pAdapter.addValue("Toast")
+            (pGUI as LGRecyclerView).setAdapter(pAdapter)
+            pAdapter.notifyData()
         }
+    }
+}
+        		</span></pre>
+                <p>Also lets look at MenuFragment.kt</p>
+                <pre v-highlightjs><span class="kotlin">
+import dev.topping.kotlin.*
+
+class MenuFragment(fragment: Any) : ILuaFragment(fragment) {
+    lateinit var binding: FormBinding
+    var viewModel = LuaViewModelProvider.of(getFragment()).get("key", MenuViewModel())
+
+    override fun onCreate(savedInstanceState: LuaBundle?) {
+    }
+
+    override fun onCreateView(
+        luacontext: LuaContext,
+        inflater: LuaViewInflator,
+        container: LGView?,
+        savedInstanceState: LuaBundle?
+    ): LGView {
+        binding = FormBinding.inflate(inflater)
+        binding.formTestButton.setOnClickListener { lgView, luaContext ->
+            LuaToast.show(luaContext, "Test button clicked", 1000)
+            lgView.findNavController().navigate(LR.id.action_menuFragment_to_receiveFragment)
+        }
+        binding.formTestCheckBox.setOnCheckedChangedListener { lgCheckBox, luaContext, isChecked ->
+            LuaToast.show(luaContext, "CheckBox value is $isChecked", 1000)
+        }
+        val combobox = binding.formTestComboBox
+        combobox.addItem("Item 1", 1)
+        combobox.addItem("Item 2", 2)
+        combobox.addItem("Item 3", 3)
+        combobox.addItem("Item 4", 4)
+        combobox.setOnComboChangedListener(Form.Companion::TestComboBox_Changed)
+        binding.formTestProgressBar.setMax(100)
+        binding.formTestProgressBar.setProgress(15)
+        return binding.getRoot()
+    }
+
+    override fun onViewCreated(view: LGView, savedInstanceState: LuaBundle?) {
+    }
+
+    override fun onResume() {
+    }
+
+    override fun onPause() {
+    }
+
+    override fun onDestroy() {
     }
 }
         		</span></pre>
             </template>
         </LangSelector>
-    <p>As you can see the method <code><router-link to="/doc/LuaForm#RegisterFormEvent(String luaId, int event, LuaTranslator lt)">LuaForm.RegisterFormEvent</router-link></code> is used to setup <code>RecyclerView</code>
+    <p>As you can see the method <code><router-link to="/doc/LuaEvent#registerUIEvent(LuaRef luaId, int event, LuaTranslator lt)">LuaEvent.registerUIEvent</router-link></code> is used to setup <code>RecyclerView</code>
      that we created on xml.</p>
     <p>First parameter is the <code>lua:id</code> that we defined on our xml.</p>
-    <p>Second <code><router-link to="/doc/LuaForm#FORM_EVENT_CREATE">LuaForm.FORM_EVENT_CREATE</router-link></code> parameter is the which event will it fire.</p>
+    <p>Second <code><router-link to="/doc/LuaEvent#UI_EVENT_VIEW_CREATE">LuaEvent.UI_EVENT_VIEW_CREATE</router-link></code> parameter is the which event will it fire.</p>
     <p>Third parameter is the which <code>method</code> will it fire (you can directly <code>inline method</code> here).</p>
-    <p>When application launches, while it is creating <code>testbed.xml</code>,  it checkes if there is an <code>FORM_EVENT_CREATE</code> is set. If it is set, it calls the third parameter
+    <p>When application launches, while it is creating <code>testbed.xml</code>,  it checkes if there is an <code>UI_EVENT_VIEW_CREATE</code> is set. If it is set, it calls the third parameter
      function.</p>
     <p>On <code>ListViewTest_Constructor</code> first parameter is <code>RecyclerView</code>. Second parameter is <code>LuaContext</code>,  which has similar purpose to Android's Context.</p>
-    <p>You can find more info about methods and variables at <router-link to="/doc/LuaForm">LuaForm</router-link> documentation.</p>
+    <p>You can find more info about methods and variables at <router-link to="/doc/LuaEvent">LuaEvent</router-link> documentation.</p>
+    <p></p>
+    <p>In kotlin you can override <router-link to="/doc/ILuaForm">ILuaForm</router-link> and <router-link to="/doc/ILuaFragment">ILuaFragment</router-link> to get more class-object like coding.</p>
     <p></p>
     <p>Now we need to set on is the entry point of the ToppingEngine on the native application.</p>
 

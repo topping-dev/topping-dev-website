@@ -1,1 +1,1 @@
-{"variables":[],"functions":[],"name":"LuaObjectStore","description":"","baseArr":["LuaObjectStore","NativeObject"],"base":""}
+{"name":"LuaObjectStore","description":"Object store to store c objects sent and received from lua engine.","baseArr":["NativeObject"],"base":"","variables":[],"functions":[]}
