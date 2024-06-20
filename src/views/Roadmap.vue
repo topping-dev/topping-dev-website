@@ -7,9 +7,8 @@
     <v-checkbox v-model="checkbox" readonly label="Kotlin Native Android integration"></v-checkbox>
     <v-checkbox v-model="checkbox" readonly label="Kotlin Native iOS integration"></v-checkbox>
 		<v-checkbox v-model="checkbox" readonly label="ConstraintLayout"></v-checkbox>
-    <v-checkbox readonly label="Lua proguard"></v-checkbox>
-    <v-checkbox readonly label="RelativeLayout"></v-checkbox>
-    <v-checkbox readonly label="Permissions"></v-checkbox>
+    <v-checkbox v-model="checkbox" readonly label="Full Jetpack Compose Integration"></v-checkbox>
+    <v-checkbox readonly label="Jetpack Compose Bug fixes"></v-checkbox>
         
     </v-container>
 </template>

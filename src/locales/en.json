@@ -17,5 +17,6 @@
   "resource-system" : "Resource System",
   "debugging" : "Debugging",
   "roadmap" : "Roadmap",
-  "how-it-works" : "How It Works"
+  "how-it-works" : "How It Works",
+  "jetpack-compose" : "Jetpack Compose"
 }

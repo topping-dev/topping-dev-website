@@ -6,6 +6,7 @@ import Roadmap from './views/Roadmap.vue';
 import WhyLua from './views/WhyLua.vue';
 import WhyKotlin from './views/WhyKotlin.vue';
 import FAQ from './views/FAQ.vue';
+import Compose from './views/Compose.vue';
 import Installation from './views/Installation.vue';
 import HowToUse from './views/HowToUse.vue';
 import ResourceSystem from './views/ResourceSystem.vue';
@@ -52,6 +53,11 @@ export default new VueRouter({
       path: '/faq',
       name: 'faq',
       component: FAQ
+    },
+    {
+      path: '/compose',
+      name: 'compose',
+      component: Compose
     },
     {
       path: '/installation',

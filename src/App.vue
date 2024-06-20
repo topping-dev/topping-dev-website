@@ -78,6 +78,9 @@
             <template v-slot:activator>
               <v-list-item-title>{{$t('quick-start')}}</v-list-item-title>
             </template>
+            <v-list-item @click="$router.replace(`/compose`)">
+              <v-list-item-title>{{$t('jetpack-compose')}}</v-list-item-title>
+            </v-list-item>
             <v-list-item @click="$router.replace(`/installation`)">
               <v-list-item-title>{{$t('installation')}}</v-list-item-title>
             </v-list-item>

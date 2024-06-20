@@ -203,7 +203,7 @@ MainForm = "Main";
                 </v-treeview>
             </template>
         </OSSelector>
-        <NextPrevPage prev="" :next="$t('how-to-use')" nextRoute="howtouse"></NextPrevPage>
+        <NextPrevPage :prev="$t('jetpack-compose')" prevRoute="compose" :next="$t('how-to-use')" nextRoute="howtouse"></NextPrevPage>
     </v-container>
 </template>
 
