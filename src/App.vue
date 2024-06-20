@@ -139,6 +139,7 @@ export default {
       items: luamodules.modules.sort(),
       title: "",
       versions: [
+        { title: "0.6.x" },
         { title: "0.5.x" },
         { title: "0.1.x" }
       ]
