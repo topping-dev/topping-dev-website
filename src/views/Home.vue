@@ -3,7 +3,7 @@
     <v-row align="center" justify="center">
       <v-spacer></v-spacer>
         <v-col>
-            <v-img src="./../../public/icon.png" height="200" contain></v-img>
+            <!--v-img src="./../../public/icon.png" height="200" contain></v-img-->
             <p style="text-align:center;" class="text-h4">Welcome to {{$t('app-name')}}</p>
             <p style="text-align:center;" class="text-h6">One layout one code.</p>
             <p style="text-align:center;">ToppingEngine is a library helps you create mobile applications using one type of layout code and one type of backend code.</p>

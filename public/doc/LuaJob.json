@@ -1,0 +1,1 @@
+{"name":"LuaJob","description":"Lua Job","baseArr":["NativeObject"],"base":"","variables":[],"functions":[{"static":false,"argsstring":"()","returnOrg":"void","name":"cancel","description":"cancel jobs","parameters":[],"return":"void"}]}

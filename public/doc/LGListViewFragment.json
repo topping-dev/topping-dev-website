@@ -1,1 +1,1 @@
-{"variables":[],"functions":[],"name":"LGListViewFragment","description":"","baseArr":["LGListViewFragment","NativeObject"],"base":""}
+{"name":"LGListViewFragment","description":"ListViewFragment","baseArr":["ListFragment","NativeObject"],"base":"ListFragment","variables":[],"functions":[]}

@@ -1,0 +1,1 @@
+{"name":"ILuaFragment","description":"Interface that you can override in kotlin to approach ILuaFragment more objective way","baseArr":["NativeObject"],"base":"","variables":[],"functions":[{"static":false,"argsstring":"()","returnOrg":"LuaFragment","name":"getFragment","description":"Get Fragment object","parameters":[],"return":"LuaFragment"}]}

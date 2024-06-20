@@ -1,1 +1,1 @@
-{"variables":[],"functions":[],"name":"LuaNativeObject","description":"","baseArr":["LuaNativeObject","NativeObject"],"base":""}
+{"name":"LuaNativeObject","description":"Object to store native objects that are not registered on lua engine.","baseArr":["NativeObject"],"base":"","variables":[],"functions":[]}

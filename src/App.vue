@@ -59,9 +59,9 @@
             <v-list-item @click="$router.replace(`/howitworks`)">
               <v-list-item-title>{{$t('how-it-works')}}</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="$router.replace(`/roadmap`)">
+            <!--v-list-item @click="$router.replace(`/roadmap`)">
               <v-list-item-title>{{$t('roadmap')}}</v-list-item-title>
-            </v-list-item>
+            </v-list-item-->
             <v-list-item @click="$router.replace(`/whylua`)">
               <v-list-item-title>{{$t('why-lua')}}</v-list-item-title>
             </v-list-item>
@@ -139,6 +139,7 @@ export default {
       items: luamodules.modules.sort(),
       title: "",
       versions: [
+        { title: "0.5.x" },
         { title: "0.1.x" }
       ]
   }),
